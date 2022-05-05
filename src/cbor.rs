@@ -126,8 +126,10 @@ impl<'a> Cbor<'a> {
                     for chunk in self.body_bytes.chunks(16) {
                         fragments.push(INDENT_MARKER.to_string().repeat(indent_level + 1));
                         for byte in chunk {
-                            fragments.push(format!("{:02x}, ", byte));
+                            fragments.push(format!("{:02x},", byte));
+                            fragments.push(" ".to_string());
                         }
+                        fragments.pop();
                         fragments.push("\n".to_string());
                     }
                 }
